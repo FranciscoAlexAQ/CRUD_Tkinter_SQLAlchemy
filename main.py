@@ -1,0 +1,93 @@
+from tkinter import *
+from tkinter import ttk
+from cadastro import Cadastro
+from deletar import Delete
+
+root = Tk()
+
+
+class Main:
+    def __init__(self):
+        self.configurarJanela()
+        self.criarMenu()
+        self.criarAbas()
+        self.labelsEntries()
+        self.criarTabelaListar()
+        self.criarTabelaConsultar()
+        root.mainloop()
+
+    def configurarJanela(self):
+        root.title('Sistema de Cadastro de Clientes')
+        root.geometry('500x400+500+100')
+        root.resizable(False, False)
+
+    def criarMenu(self):
+        self.menuPrincipal = Menu(root)
+
+        self.cadastrar = Menu(self.menuPrincipal)
+        self.menuPrincipal.add_command(label='Cadastrar', command=lambda: Cadastro(root))
+
+        self.deletar = Menu(self.menuPrincipal)
+        self.menuPrincipal.add_command(label='Deletar', command=lambda: Delete(root))
+
+        root.config(menu=self.menuPrincipal)
+
+    def criarAbas(self):
+        self.listar = ttk.Notebook(root, height=400, width=490)
+        self.listar.pack(pady=10)
+
+        self.frameListar = Frame(self.listar)
+        self.frameListar.pack()
+        self.frameConsultar = Frame(self.listar)
+        self.frameConsultar.pack()
+
+        self.listar.add(self.frameListar, text='Lista de Clientes')
+        self.listar.add(self.frameConsultar, text='Consulta de Clientes')
+
+    def criarTabelaListar(self):
+        self.tabela = ttk.Treeview(self.frameListar, column=(
+            'col1', 'col2', 'col3', 'col4'))
+
+        self.tabela.column("#0", width=0)
+        self.tabela.column("#1", width=100)
+        self.tabela.column("#2", width=50)
+        self.tabela.column("#3", width=100)
+        self.tabela.column("#4", width=100)
+
+        self.tabela.heading("#0", text='')
+        self.tabela.heading("#1", text='código')
+        self.tabela.heading("#2", text='nome')
+        self.tabela.heading("#3", text='cidade')
+        self.tabela.heading("#4", text='data cadastro')
+
+        self.tabela.place(relx=0.01, rely=0.1, width=480, height=500)
+
+    def criarTabelaConsultar(self):
+        self.tabela = ttk.Treeview(self.frameConsultar, column=(
+            'col1', 'col2', 'col3', 'col4'))
+
+        self.tabela.column("#0", width=0)
+        self.tabela.column("#1", width=100)
+        self.tabela.column("#2", width=50)
+        self.tabela.column("#3", width=100)
+        self.tabela.column("#4", width=100)
+
+        self.tabela.heading("#0", text='')
+        self.tabela.heading("#1", text='código')
+        self.tabela.heading("#2", text='nome')
+        self.tabela.heading("#3", text='cidade')
+        self.tabela.heading("#4", text='data cadastro')
+
+        self.tabela.place(relx=0.01, rely=0.2, width=480, height=400)
+
+    def labelsEntries(self):
+        self.nome = Label(self.frameConsultar, text='consultar por cliente')
+        self.nome.place(relx=0.02, rely=0.04)
+
+        self.nomeEntry = Entry(self.frameConsultar)
+        self.nomeEntry.place(relx=0.02, rely=0.11)
+        self.btn = Button(self.frameConsultar, text='consultar')
+        self.btn.place(relx=0.37, rely=0.1)
+
+
+Main()
