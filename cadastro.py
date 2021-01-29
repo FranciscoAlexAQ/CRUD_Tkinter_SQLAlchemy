@@ -1,7 +1,7 @@
 from tkinter import Toplevel
 from datetime import datetime
 from tkinter import *
-
+from orm import cadastrar
 
 class Cadastro:
     def __init__(self, root):
@@ -32,7 +32,7 @@ class Cadastro:
         self.entryData = Entry(self.root)
         self.entryData.place(relx=0.1, rely=0.55)
 
-        self.btn = Button(self.root, text='cadastrar')
+        self.btn = Button(self.root, text='cadastrar', command=lambda: cadastrar(self.entryNome.get(), self.entryCidade.get(), self.entryData.get()))
         self.btn.place(relx=0.1, rely=0.62)
 
     def pegarData(self):
