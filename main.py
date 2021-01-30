@@ -3,6 +3,7 @@ from tkinter import ttk
 from cadastro import Cadastro
 from deletar import Delete
 from orm import listar, consultar
+from atualizar import Update
 
 
 root = Tk()
@@ -31,6 +32,9 @@ class Main:
 
         self.deletar = Menu(self.menuPrincipal)
         self.menuPrincipal.add_command(label='Deletar', command=lambda: Delete(root))
+
+        self.atualizar = Menu(self.menuPrincipal)
+        self.menuPrincipal.add_command(label='Atualizar', command=lambda: Update(root))
 
         root.config(menu=self.menuPrincipal)
 

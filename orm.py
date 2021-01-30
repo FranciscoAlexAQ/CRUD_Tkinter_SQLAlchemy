@@ -16,8 +16,8 @@ class Cliente(Base):
     cidade = Column(String(100))
     data = Column(String(20))
 
-    # def __repr__(self):
-    #     return f'{self.id} {self.nome} {self.cidade} {self.data}'
+    def __repr__(self):
+        return f'{self.id} {self.nome} {self.cidade} {self.data}'
 
 
 Base.metadata.create_all(Engine)
@@ -42,12 +42,14 @@ def consultar(nome):
     return session.query(Cliente).filter(Cliente.nome == nome).all()
 
 
-def atualizar(pessoa, nome=Cliente.nome, cidade=Cliente.cidade):
-    session.query(Cliente).filter(Cliente.nome == pessoa).update(
+def atualizar(id, nome=Cliente.nome, cidade=Cliente.cidade):
+    session.query(Cliente).filter(Cliente.id == id).update(
         {'nome': nome, 'cidade': cidade}
     )
+    session.commit()
 
 
 if __name__ == '__main__':
-    atualizar('Alex', 'alex')
-    print(listar())
+    #atualizar('Alex', 'alex', 'pereiro')
+    #print(listar())
+    print(pegarDadosAtualizar('Ana'))
