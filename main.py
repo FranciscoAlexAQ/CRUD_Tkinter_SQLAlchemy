@@ -52,7 +52,7 @@ class Main:
 
         self.tabela.column("#0", width=0)
         self.tabela.column("#1", width=100)
-        self.tabela.column("#2", width=50)
+        self.tabela.column("#2", width=100)
         self.tabela.column("#3", width=100)
         self.tabela.column("#4", width=100)
 
@@ -64,8 +64,9 @@ class Main:
 
         self.tabela.delete(*self.tabela.get_children())
         for i in listar():
-            self.tabela.insert('', END, values=i)
-        
+            self.tabela.insert('', END, values=(i))
+           
+
         self.tabela.place(relx=0.01, rely=0.1, width=480, height=500)
 
     def criarTabelaConsultar(self):

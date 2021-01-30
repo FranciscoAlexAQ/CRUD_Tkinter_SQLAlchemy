@@ -16,8 +16,8 @@ class Cliente(Base):
     cidade = Column(String(100))
     data = Column(String(20))
 
-    def __repr__(self):
-        return f'{self.id} {self.nome} {self.cidade} {self.data}'
+    # def __repr__(self):
+    #     return f'{self.id} {self.nome} {self.cidade} {self.data}'
 
 
 Base.metadata.create_all(Engine)
@@ -30,8 +30,7 @@ def cadastrar(nome, cidade, data):
 
 
 def listar():
-    clientes = session.query(Cliente).all()
-    return clientes
+    return session.query(Cliente.id, Cliente.nome, Cliente.cidade, Cliente.data).all()
 
 
 def deletar(nome):
@@ -40,10 +39,15 @@ def deletar(nome):
 
 
 def consultar(nome):
-    dados = session.query(Cliente).filter(Cliente.nome.like(f'%{nome}%')).all()
-    return dados
+    return session.query(Cliente).filter(Cliente.nome == nome).all()
+
+
+def atualizar(pessoa, nome=Cliente.nome, cidade=Cliente.cidade):
+    session.query(Cliente).filter(Cliente.nome == pessoa).update(
+        {'nome': nome, 'cidade': cidade}
+    )
 
 
 if __name__ == '__main__':
-    deletar('João ')
+    atualizar('Alex', 'alex')
     print(listar())
