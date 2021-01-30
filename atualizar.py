@@ -22,24 +22,24 @@ class Update:
     # Criação dos campos de texto e das labels
     def criarEntriesLables(self):
         self.id = Label(self.root, text='Código do Cliente')
-        self.id.place(relx=0.1, rely=0.35)
-        self.entryId = Entry(self.root)
-        self.entryId.place(relx=0.1, rely=0.4)
+        self.id.place(relx=0.4, rely=0.37)
+        self.entryId = Entry(self.root, justify=CENTER)
+        self.entryId.place(relx=0.34, rely=0.44)
 
         self.nome = Label(self.root, text='Nome do Cliente')
-        self.nome.place(relx=0.1, rely=0.5)
-        self.entryNome = Entry(self.root)
-        self.entryNome.place(relx=0.1, rely=0.55)
+        self.nome.place(relx=0.4, rely=0.53)
+        self.entryNome = Entry(self.root, justify=CENTER)
+        self.entryNome.place(relx=0.34, rely=0.59)
 
         self.cidade = Label(self.root, text='Cidade do Cliente')
-        self.cidade.place(relx=0.1, rely=0.65)
-        self.entryCidade = Entry(self.root)
-        self.entryCidade.place(relx=0.1, rely=0.7)
+        self.cidade.place(relx=0.4, rely=0.67)
+        self.entryCidade = Entry(self.root, justify=CENTER)
+        self.entryCidade.place(relx=0.34, rely=0.73)
         
         # Bitão atualizar
         self.btn = Button(self.root, text='atualizar', 
             command=lambda: atualizar(self.entryId.get(), self.entryNome.get(), self.entryCidade.get()))
-        self.btn.place(relx=0.1, rely=0.76)
+        self.btn.place(relx=0.42, rely=0.82)
 
     # Função que realizar o duplo-click na tabela 'tabela'
     def duploClick(self, event):
@@ -76,4 +76,4 @@ class Update:
         for i in listar():
             self.tabela.insert('', END, values=(i))
            
-        self.tabela.place(relx=0.01, rely=0.0, width=480, height=130)
+        self.tabela.place(relx=0.014, rely=0.02, width=480, height=130)
