@@ -4,6 +4,7 @@ from tkinter import *
 from orm import cadastrar
 
 
+# Classe 'cadastrar' 
 class Cadastro:
     def __init__(self, root):
         self.root = Toplevel()
@@ -12,11 +13,13 @@ class Cadastro:
         self.pegarData()
         self.root.transient(root)
 
+    # Configuração da janela
     def configurarJanela(self):
         self.root.title('Cadastro de clientes')
         self.root.geometry('500x400+500+100')
         self.root.resizable(False, False)
 
+    # Criação dos campos de textos e das lebels
     def criarEntriesLables(self):
         self.nome = Label(self.root, text='nome')
         self.nome.place(relx=0.1, rely=0.2)
@@ -33,16 +36,19 @@ class Cadastro:
         self.entryData = Entry(self.root)
         self.entryData.place(relx=0.1, rely=0.55)
 
+        # Botão cadastrar
         self.btn = Button(self.root, text='cadastrar', 
                 command=lambda: cadastrar(str(self.entryNome.get()).strip(), str(self.entryCidade.get()).strip(), str(self.entryData.get()).strip()))
         self.btn.place(relx=0.1, rely=0.62)
 
+    # Método que pega a data para o cadastro
     def pegarData(self):
         self.tempo = datetime.now()
         self.dia = self.tempo.day
         self.mes = self.tempo.month
         self.ano = self.tempo.year
 
+        # Verifica se o mês é menor ou igual a nove, se sim, adiciona um 0 antes
         if self.mes <= 9:
             self.data = f'{self.dia}/0{self.mes}/{self.ano}'
         
